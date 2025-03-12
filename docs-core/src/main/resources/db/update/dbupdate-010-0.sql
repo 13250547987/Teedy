@@ -3,3 +3,4 @@ insert into T_USER(USE_ID_C, USE_IDROLE_C, USE_USERNAME_C, USE_PASSWORD_C, USE_E
 update T_CONFIG set CFG_VALUE_C = '10' where CFG_ID_C = 'DB_VERSION';
 
 #hello,this is master branch
+
