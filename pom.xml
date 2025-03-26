@@ -10,6 +10,18 @@
 
   <name>Docs Parent</name>
 
+
+  <distributionManagement>
+    <site>
+      <id>local-site</id>
+      <name>Local Site</name>
+      <url>file://${project.build.directory}/staging</url>
+    </site>
+  </distributionManagement>
+
+
+
+
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
@@ -82,7 +94,6 @@
   </repositories>
 
 
-  /////
   <build>
     <plugins>
       <plugin>
@@ -118,6 +129,14 @@
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${org.eclipse.jetty.jetty-maven-plugin.version}</version>
       </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>4.0.0-M7</version>
+      </plugin>
+
     </plugins>
   </build>
 
