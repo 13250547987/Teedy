@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * DocumentDao JPA integration test.
  */
