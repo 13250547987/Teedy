@@ -75,4 +75,11 @@ angular.module('docs').controller('Login', function(Restangular, $scope, $rootSc
       });
     });
   };
+
+  // Register
+  $scope.openRegister = function () {
+    $uibModal.open({
+      templateUrl: 'partial/docs/register.html',
+    });
+  };
 });

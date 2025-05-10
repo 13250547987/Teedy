@@ -35,13 +35,13 @@
           <div class="form-group">
             <label class="sr-only" for="inputUsername">{{ 'login.username' | translate }}</label>
             <input class="form-control" type="text" id="inputUsername" name="username"
-                   ng-attr-placeholder="{{ 'login.username' | translate }}" ng-model="user.username" />
+              ng-attr-placeholder="{{ 'login.username' | translate }}" ng-model="user.username" />
           </div>
 
           <div class="form-group">
             <label class="sr-only" for="inputPassword">{{ 'login.password' | translate }}</label>
             <input class="form-control" type="password" id="inputPassword" name="password"
-                   ng-attr-placeholder="{{ 'login.password' | translate }}" ng-model="user.password" />
+              ng-attr-placeholder="{{ 'login.password' | translate }}" ng-model="user.password" />
           </div>
 
           <span class="help-block" ng-if="codeRequired">
@@ -51,7 +51,7 @@
           <div class="form-group" ng-if="codeRequired">
             <label class="sr-only" for="inputCode">{{ 'login.validation_code' | translate }}</label>
             <input class="form-control" type="text" id="inputCode" name="code"
-                   ng-attr-placeholder="{{ 'login.validation_code' | translate }}" ng-model="user.code" />
+              ng-attr-placeholder="{{ 'login.validation_code' | translate }}" ng-model="user.code" />
           </div>
 
           <div class="checkbox text-muted">
@@ -71,6 +71,13 @@
               <div class="well-sm">
                 <a href ng-click="openPasswordLost()">{{ 'login.password_lost_btn' | translate }}</a>
               </div>
+            </div>
+
+            <!-- ⬅︎ 新增：注册申请 -->
+            <div class="col-md-6 text-left">
+              <a href ng-click="openRegister()">
+                <span class="fas fa-user-plus"></span> {{"注册申请"}}
+              </a>
             </div>
           </div>
 
