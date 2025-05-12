@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ '注册申请' }}</h3>
+</div>
+
+<div class="modal-body">
+    <form name="registerForm" novalidate autocomplete="off">
+        <!-- 用户名 -->
+        <div class="form-group" ng-class="{ 'has-error': registerForm.userUsername.$invalid && registerForm.$dirty }">
+            <label for="inputUsername">{{ 'settings.user.edit.username' | translate }}</label>
+            <input id="inputUsername" name="userUsername" class="form-control" required
+                ng-pattern="/^[a-zA-Z0-9_@.-]*$/" ng-minlength="3" ng-maxlength="50" ng-model="user.username"
+                placeholder="{{ 'settings.user.edit.username' | translate }}">
+        </div>
+
+        <!-- 邮箱 -->
+        <div class="form-group" ng-class="{ 'has-error': registerForm.userEmail.$invalid && registerForm.$dirty }">
+            <label for="inputEmail">{{ 'settings.user.edit.email' | translate }}</label>
+            <input id="inputEmail" name="userEmail" type="email" class="form-control" required ng-minlength="1"
+                ng-maxlength="100" ng-model="user.email" placeholder="{{ 'settings.user.edit.email' | translate }}">
+        </div>
+
+        <!-- 密码 -->
+        <div class="form-group" ng-class="{ 'has-error': registerForm.userPassword.$invalid && registerForm.$dirty }">
+            <label for="inputPassword">{{ 'settings.user.edit.password' | translate }}</label>
+            <input id="inputPassword" name="userPassword" type="password" class="form-control" required ng-minlength="8"
+                ng-maxlength="50" ng-model="user.password"
+                placeholder="{{ 'settings.user.edit.password' | translate }}">
+        </div>
+
+        <!-- 确认密码 -->
+        <div class="form-group"
+            ng-class="{ 'has-error': registerForm.passwordconfirm.$invalid && registerForm.$dirty }">
+            <label for="inputPasswordConfirm">{{ 'settings.user.edit.password_confirm' | translate }}</label>
+            <input id="inputPasswordConfirm" name="passwordconfirm" type="password" class="form-control" required
+                ui-validate="'$value === user.password'" ui-validate-watch="'user.password'"
+                ng-model="user.passwordconfirm" placeholder="{{ 'settings.user.edit.password_confirm' | translate }}">
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">
+        {{ '取消' }}
+    </button>
+    <button class="btn btn-primary" ng-click="register()" ng-disabled="registerForm.$invalid">
+        {{ '添加' }}
+    </button>
+</div>

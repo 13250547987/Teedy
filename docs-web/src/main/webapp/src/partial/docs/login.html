@@ -72,6 +72,13 @@
                 <a href ng-click="openPasswordLost()">{{ 'login.password_lost_btn' | translate }}</a>
               </div>
             </div>
+
+            <!-- ⬅︎ 新增：注册申请 -->
+            <div class="col-md-6 text-left">
+              <a href ng-click="openRegister()">
+                <span class="fas fa-user-plus"></span> {{"注册申请"}}
+              </a>
+            </div>
           </div>
 
           <p class="text-center" ng-if="app.guest_login">&nbsp;</p>

@@ -21,12 +21,12 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
     forceHelperSize: true,
     forcePlaceholderSize: true,
     tolerance: 'pointer',
-    start: function() {
+    start: function () {
       $(this).addClass('currently-dragging');
     },
     stop: function () {
       var _this = this;
-      setTimeout(function(){
+      setTimeout(function () {
         $(_this).removeClass('currently-dragging');
       }, 300);
 
@@ -67,8 +67,8 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
     var title = $translate.instant('document.view.content.delete_file_title');
     var msg = $translate.instant('document.view.content.delete_file_message');
     var btns = [
-      {result: 'cancel', label: $translate.instant('cancel')},
-      {result: 'ok', label: $translate.instant('ok'), cssClass: 'btn-primary'}
+      { result: 'cancel', label: $translate.instant('cancel') },
+      { result: 'ok', label: $translate.instant('ok'), cssClass: 'btn-primary' }
     ];
 
     $dialog.messageBox(title, msg, btns, function (result) {
@@ -131,7 +131,7 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
 
       // Uploading files sequentially
       var key = 0;
-      var then = function() {
+      var then = function () {
         if (files[key]) {
           $scope.uploadFile(files[key], newfiles[key++]).then(then);
         }
@@ -143,7 +143,7 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
   /**
    * Upload a file.
    */
-  $scope.uploadFile = function(file, newfile, previousFileId) {
+  $scope.uploadFile = function (file, newfile, previousFileId) {
     // Upload the file
     newfile.status = $translate.instant('document.view.content.upload_progress');
     return Upload.upload({
@@ -155,23 +155,23 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
         previousFileId: previousFileId
       }
     })
-    .progress(function(e) {
-      newfile.progress = parseInt(100.0 * e.loaded / e.total);
-    })
-    .success(function(data) {
-      // Update local model with real data
-      newfile.id = data.id;
-      newfile.size = data.size;
+      .progress(function (e) {
+        newfile.progress = parseInt(100.0 * e.loaded / e.total);
+      })
+      .success(function (data) {
+        // Update local model with real data
+        newfile.id = data.id;
+        newfile.size = data.size;
 
-      // New file uploaded, increase used quota
-      $rootScope.userInfo.storage_current += data.size;
-    })
-    .error(function (data) {
-      newfile.status = $translate.instant('document.view.content.upload_error');
-      if (data.type === 'QuotaReached') {
-        newfile.status += ' - ' + $translate.instant('document.view.content.upload_error_quota');
-      }
-    });
+        // New file uploaded, increase used quota
+        $rootScope.userInfo.storage_current += data.size;
+      })
+      .error(function (data) {
+        newfile.status = $translate.instant('document.view.content.upload_error');
+        if (data.type === 'QuotaReached') {
+          newfile.status += ' - ' + $translate.instant('document.view.content.upload_error_quota');
+        }
+      });
   };
 
   /**
@@ -224,4 +224,29 @@ angular.module('docs').controller('DocumentViewContent', function ($scope, $root
       }
     })
   };
+
+  /**
+ * Edit an image (crop / rotate …) and save as new version.
+ */
+  $scope.editImage = function (file) {
+    // 只允许编辑图片
+    if (!file || file.mimetype.indexOf('image/') !== 0 || !$scope.document.writable) {
+      return;
+    }
+
+    $uibModal.open({
+      templateUrl: 'partial/docs/file.edit.image.html',
+      controller: 'ModalImageEditor',
+      size: 'lg',
+      backdrop: 'static',
+      resolve: {
+        file: function () { return file; }
+      }
+    }).result.then(function (editedFile) {
+      if (!editedFile) { return; }
+      $scope.uploadNewVersion([editedFile], file);   // 直接塞进去
+    });
+  };
+
 });
+
