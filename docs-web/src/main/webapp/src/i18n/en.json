@@ -1,0 +1,25 @@
+{
+    "settings": {
+        "user": {
+            "registration_requests": "Registration Requests",
+            "no_requests": "No pending registration requests",
+            "username": "Username",
+            "email": "Email",
+            "request_date": "Request Date",
+            "actions": "Actions",
+            "approve": "Approve",
+            "reject": "Reject",
+            "process_request": "Process Request",
+            "approve_request": "Approve Request",
+            "reject_request": "Reject Request",
+            "initial_password": "Initial Password",
+            "password_required": "Password is required",
+            "password_min_length": "Password must be at least 8 characters",
+            "reject_warning": "Are you sure you want to reject this registration request?",
+            "request_approved_title": "Request Approved",
+            "request_approved_message": "The user registration request has been approved. The user can now log in with their username and the password you provided.",
+            "request_rejected_title": "Request Rejected",
+            "request_rejected_message": "The user registration request has been rejected."
+        }
+    }
+}
