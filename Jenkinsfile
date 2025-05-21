@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DEPLOYMENT_NAME = "hello-node"
-        CONTAINER_NAME = "try-node"
+        CONTAINER_NAME = "docs"
         IMAGE_NAME = "zfffan/teedy:latest"
     }
     stages {
